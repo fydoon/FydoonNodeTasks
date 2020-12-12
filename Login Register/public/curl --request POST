@@ -1,0 +1,5 @@
+curl --request POST
+url https://api.sendgrid.com/v3/mail/send
+header 'Authorization: Bearer <<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>>' 
+header 'Content-Type: application/json'
+data '{"personalizations":[{"to":[{"email":"venkatarao@fydoon.com","name":"John Doe"}],"subject":"Hello, World!"}],"content": [{"type": "text/plain", "value": "Heya!"}],"from":{"email":"raofydoon@gmail.com","name":"Sam Smith"},"reply_to":{"email":"raofydoon@gmail.com","name":"Sam Smith"}}'
