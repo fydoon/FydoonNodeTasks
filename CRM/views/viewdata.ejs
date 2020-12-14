@@ -1,21 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <table border="1" align="center" >
+    <%- include ('partials/header.ejs') %>
+    <body>
+     <%- include ('partials/navbar.ejs') %>
+      <div class="wrapper main_container" >
+        <div class="item">
+          Welcome Mr./Miss <%= user.username%>  You Have Logged In Successfully !
+        </div>
+        <div class="item" style="position: absolute;margin-left: 17%;margin-top: 6%;">
+            <table border="1" align="center" >
         <tr>
-            <th>name</th>
+            <th>id</th>
             <th>email</th>
-            <th>password</th>
-            
+            <th>name</th>
+            <!-- <th>password</th> -->
+            <th>Date with Time </th>
+            <th>messages </th>
         </tr>
+        <%if (user.length >0){ %>
+            <% user.forEach(function(user){ %>
         <tr>
-           <%= user %>
+            <th><%= user._id %></th>
+            <th><%= user.email %></th>
+            <th><%= user.username %></th>
+            <!-- <th><%= user.password %></th> -->
+            <th><%= user.data %></th>
+            <th><%= user.messages %></th>
         </tr>
+        <% }) %>
+        <% } %>
     </table>
+    </div>
 </body>
 </html>

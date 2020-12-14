@@ -161,7 +161,7 @@ passport.deserializeUser(function(id,cd){
     });
 });
 //endof authnication
-////get requests gor login page
+//get requests gor login page
 routes.get('/login',(req,res)=>{
     res.render('login');
 });
@@ -177,8 +177,9 @@ routes.post('/login',(req, res,next)=>{
 
 routes.get('/logout',(req,res)=>{
     req.logout();
-    res.redirect('/login')
+    res.redirect('/login');
 });
+
 //get request for success page
 routes.get('/success',CheckAuth,(req,res)=>{
     res.render('success',{'user':req.user});
@@ -232,6 +233,16 @@ routes.post('/forgotpassword',(req,res)=>{
 });
 
 // After login get requests//
+
+routes.get('/viewdata',(req,res)=>{
+    user.find((err,docs)=>{
+        if(err){
+            console.log(err);
+        }else res.render('viewdata',{user:docs})
+        console.log(docs)
+    })
+})
+
 routes.get('/Dashboard',CheckAuth,(req,res)=>{
     res.render('Dashboard',{'user':req.user})
 });
@@ -254,14 +265,5 @@ routes.get('/LeadConversion',CheckAuth,(req,res)=>{
     res.render('LeadConversion',{'user':req.user})
 });
 
-
-
-routes.get('/viewdata',(req,res)=>{
-    user.find({},(err,docs)=>{
-        if(err){
-            console.log(err);
-        }else res.render('viewdata',{user:docs})
-    })
-})
 
 module.exports = routes; 
